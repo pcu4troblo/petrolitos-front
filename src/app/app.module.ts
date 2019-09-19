@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { ReportarIncidenteComponent } from './components/incidentes/reportar-incidente/reportar-incidente.component';
 import { ServicesService } from './services/services.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InicioComponent } from './home/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReportarIncidenteComponent
+    ReportarIncidenteComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
