@@ -16,7 +16,11 @@ export class ServicesService {
   }
 
   getIncidents(): Observable<any>{
-    return this.httpClient.get(this.api_url+"/incidents")
+    return this.httpClient.get(this.api_url+"/incidents");
+  }
+
+  getUsers(): Observable<any>{
+    return this.httpClient.get(this.api_url+"/employees");
   }
 
 }

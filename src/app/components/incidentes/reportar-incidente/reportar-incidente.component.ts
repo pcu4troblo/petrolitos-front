@@ -20,23 +20,28 @@ export class ReportarIncidenteComponent implements OnInit {
     this.incidentForm = new FormGroup({
       content: new FormControl(),
       category: new FormControl(),
-      file : new FormControl(),
+      file: new FormControl(),
       tittle: new FormControl()
     });
 
-    this.services.getIncidents().subscribe(res => {
-      console.log(res);
-      
-    });
+
 
   }
 
-  onSubmit():void{
-   console.log(this.incidentForm.value);
-   this.services.saveReport(this.incidentForm.value).subscribe(res => {
-     console.log(res);
-   })
-   
+  onSubmit(): void {
+    /*console.log(this.incidentForm.value);
+    this.services.saveReport(this.incidentForm.value).subscribe(res => {
+      console.log(res);
+    });*/
+
+    this.services.getIncidents().subscribe(res => {
+      console.log(res);
+    });
+
+    this.services.getUsers().subscribe(res => {
+      console.log(res);
+    });
+
   }
 
 }
