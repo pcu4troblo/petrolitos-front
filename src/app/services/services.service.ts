@@ -14,4 +14,9 @@ export class ServicesService {
   saveReport(report: any): Observable<any>{
     return this.httpClient.post(this.api_url+"/createIncident", report);
   }
+
+  getIncidents(): Observable<any>{
+    return this.httpClient.get(this.api_url+"/incidents")
+  }
+
 }

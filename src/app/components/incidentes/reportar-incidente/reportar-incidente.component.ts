@@ -24,6 +24,11 @@ export class ReportarIncidenteComponent implements OnInit {
       tittle: new FormControl()
     });
 
+    this.services.getIncidents().subscribe(res => {
+      console.log(res);
+      
+    });
+
   }
 
   onSubmit():void{
