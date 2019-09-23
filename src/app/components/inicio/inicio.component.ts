@@ -1,6 +1,7 @@
 import { ServicesService } from './../../services/services.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-inicio',
@@ -10,8 +11,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class InicioComponent implements OnInit {
 
   incidentForm: FormGroup;
+  incidents: Array<any> = [];
   
-  constructor(private services: ServicesService) { }
+  constructor(
+    private services: ServicesService,
+    private router: Router
+    ) { }
 
 
   ngOnInit() {
@@ -20,6 +25,12 @@ export class InicioComponent implements OnInit {
       category: new FormControl(),
       file: new FormControl(),
       tittle: new FormControl()
+    });
+
+    this.services.getIncidents().subscribe(res => {
+      console.log(res);
+      this.incidents = res.incident;
+      console.log(this.incidents[0]);
     });
   }
 
@@ -38,5 +49,10 @@ export class InicioComponent implements OnInit {
     });
 
   }
+
+  editProfile(){
+    this.router.navigateByUrl("/editar")
+  }
+
 
 }

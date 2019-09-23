@@ -16,3 +16,12 @@
     border: 2px;
     border-color: black;
 }
+
+.list-group-item-primary{
+    cursor: pointer;
+}
+
+.modal-header{
+    background-color: brown;
+    color: white;
+}
