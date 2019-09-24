@@ -12,10 +12,11 @@ export class InicioComponent implements OnInit {
 
   incidentForm: FormGroup;
   incidents: Array<any> = [];
+  logedUser: any = {};
   
   constructor(
     private services: ServicesService,
-    private router: Router
+    private router: Router,
     ) { }
 
 
@@ -26,6 +27,10 @@ export class InicioComponent implements OnInit {
       file: new FormControl(),
       tittle: new FormControl()
     });
+
+    this.logedUser = JSON.parse(localStorage.getItem('user'));
+    console.log(this.logedUser);
+    
 
     this.services.getIncidents().subscribe(res => {
       this.incidents = res.incident;
@@ -41,6 +46,12 @@ export class InicioComponent implements OnInit {
 
   editProfile(){
     this.router.navigateByUrl("/editar")
+  }
+
+  logOut(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
 
 

@@ -25,3 +25,7 @@
     background-color: brown;
     color: white;
 }
+
+.dropdown-item{
+    cursor: pointer;
+}

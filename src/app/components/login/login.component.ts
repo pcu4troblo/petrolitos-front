@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   
   user: FormGroup;
   token: any;
+  logedUser: any = {};
 
   constructor(
     private service: ServicesService,
@@ -27,11 +28,19 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void{
    this.service.login(this.user.value).subscribe( res => {
-     console.log(res.accessToken);
-     /*this.token = res.accesToken;
-     localStorage.setItem('token', res.accesToken)*/
-     
+     this.token = res.token;
+     this.logedUser = {
+       name: res.user,
+       email: res.email
+     };
+     localStorage.setItem('token', this.token);
+     localStorage.setItem('user', JSON.stringify(this.logedUser));
+     this.router.navigateByUrl('')
    })
+  }
+
+  register(){
+    this.router.navigate(['/register']);
   }
 
 }
