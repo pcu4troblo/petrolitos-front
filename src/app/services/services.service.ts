@@ -23,6 +23,10 @@ export class ServicesService {
     return this.httpClient.get(this.api_url+"/employees");
   }
 
+  getEmployee(employee:any): Observable<any>{
+    return this.httpClient.post<any>(this.api_url+"/getEmployee", employee);
+  }
+
   register(user: any){
     return this.httpClient.post(this.api_url+"/register", user);
   }
@@ -33,6 +37,10 @@ export class ServicesService {
 
   loggedIn(){
     return !!localStorage.getItem('token');
+  }
+
+  updateProfile(profile){
+    return this.httpClient.put<any>(this.api_url+"/updateUser", profile);
   }
 
   getToken(){

@@ -2,24 +2,22 @@
 <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <form>
+                <form [formGroup]="profile" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <label for="name">Nombre:</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
-                            placeholder="nombre">
+                        <input type="text" class="form-control" id="name" formControlName="name" placeholder="nombre">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="email">
+                        <input type="text" class="form-control" formControlName="email" placeholder="email">
                     </div>
                     <div class="form-group">
                         <label>Telefono:</label>
-                        <input type="text" class="form-control" placeholder="telefono">
+                        <input type="text" class="form-control" formControlName="phone" placeholder="telefono">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Redes</label>
-                        <input type="text" class="form-control" placeholder="redes">
+                        <input type="text" class="form-control" formControlName="social" placeholder="redes">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

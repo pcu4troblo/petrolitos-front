@@ -28,16 +28,16 @@ export class InicioComponent implements OnInit {
       tittle: new FormControl()
     });
 
-    this.logedUser = JSON.parse(localStorage.getItem('user'));
-    console.log(this.logedUser);
     
+    this.logedUser = JSON.parse(localStorage.getItem('user'));
+   
 
     this.services.getIncidents().subscribe(res => {
       this.incidents = res.incident;
     });
   }
 
-  onSubmit(): void {
+  enviarReporte(): void {
     console.log(this.incidentForm.value);
     this.services.saveReport(this.incidentForm.value).subscribe(res => {
       console.log(res);
@@ -45,14 +45,9 @@ export class InicioComponent implements OnInit {
   }
 
   editProfile(){
-    this.router.navigateByUrl("/editar")
+    this.router.navigateByUrl("/profile/" + this.logedUser.email)
   }
 
-  logOut(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
-  }
-
+ 
 
 }
