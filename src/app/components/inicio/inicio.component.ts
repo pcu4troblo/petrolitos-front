@@ -28,26 +28,15 @@ export class InicioComponent implements OnInit {
     });
 
     this.services.getIncidents().subscribe(res => {
-      console.log(res);
       this.incidents = res.incident;
-      console.log(this.incidents[0]);
     });
   }
 
   onSubmit(): void {
-    /*console.log(this.incidentForm.value);
+    console.log(this.incidentForm.value);
     this.services.saveReport(this.incidentForm.value).subscribe(res => {
       console.log(res);
-    });*/
-
-    this.services.getIncidents().subscribe(res => {
-      console.log(res);
     });
-
-    this.services.getUsers().subscribe(res => {
-      console.log(res);
-    });
-
   }
 
   editProfile(){

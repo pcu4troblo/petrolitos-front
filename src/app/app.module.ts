@@ -13,6 +13,7 @@ import { SidenavComponent } from './tools/sidenav/sidenav.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [ServicesService],
+  providers: [ServicesService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

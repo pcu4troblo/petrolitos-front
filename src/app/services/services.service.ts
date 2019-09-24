@@ -23,4 +23,17 @@ export class ServicesService {
     return this.httpClient.get(this.api_url+"/employees");
   }
 
+  register(user: any){
+    return this.httpClient.post(this.api_url+"/register", user);
+  }
+
+  login(user:any){
+    return this.httpClient.post<any>(this.api_url+"/login", user);
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token');
+  }
+
+
 }

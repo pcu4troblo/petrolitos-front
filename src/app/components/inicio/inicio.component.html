@@ -43,7 +43,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form [formGroup]="incidentForm" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="incidentForm">
                         <div class="form-group">
                             <label class="title" for="exampleInputEmail1">Tittle:</label>
                             <input formControlName="tittle" type="text" class="form-control" id="exampleInputText"
@@ -81,7 +81,7 @@
                                 tiene.</small>
                         </div>
                         <div class="form-footer">
-                            <button type="submit" data-dismiss="modal" class="btn btn-primary">Submit</button>
+                            <button type="submit" data-dismiss="modal" (click)="onSubmit()" class="btn btn-primary">Submit</button>
                         </div>
 
                     </form>
