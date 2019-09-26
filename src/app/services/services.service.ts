@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
+
+  
 
   api_url = 'https://nameless-tundra-28328.herokuapp.com/api';
 
@@ -34,6 +37,8 @@ export class ServicesService {
   login(user:any){
     return this.httpClient.post<any>(this.api_url+"/login", user);
   }
+
+  
 
   loggedIn(){
     return !!localStorage.getItem('token');

@@ -7,10 +7,12 @@
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
                             placeholder="Enter email">
+                            <small *ngIf="errorU"  class="form-text incorrectPassword text-muted">Usuario no existe</small>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                        <small *ngIf="errorP"  class="form-text incorrectPassword text-muted">Contraseña Incorrecta</small>
                     </div>
                     <div class="form-group form-check">
                         <small class="form-text register text-muted" (click)="register()">Registrarse>></small>
