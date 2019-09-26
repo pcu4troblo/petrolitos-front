@@ -3,10 +3,19 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #000;
     position: absolute;
-    top: 15vh;
+    top: 19vh;
     width: 70%;
+    background-color:white;
+    opacity: 1;
 }
 
 .register{
     cursor: pointer;
+}
+
+
+.background{
+    background-color: darkslategray;
+    height: 100%;
+    width: 100%;
 }

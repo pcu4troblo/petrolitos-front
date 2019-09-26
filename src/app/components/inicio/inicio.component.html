@@ -14,8 +14,9 @@
             <div class="col-sm-6">
                 <table class="table">
                     <tbody>
-                        <tr *ngFor="let item of incidents">
+                        <tr *ngFor="let item of incidents; let i = index">
                             <th scope="row">{{item.tittle}}</th>
+                            <th scope="row"><img src="{{images[i]}}" style="max-width: 100px; max-height: 100px;"></th>
                         </tr>
                     </tbody>
                 </table>
