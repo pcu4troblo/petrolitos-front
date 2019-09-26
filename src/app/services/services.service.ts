@@ -15,7 +15,7 @@ export class ServicesService {
   constructor(private httpClient: HttpClient) { }
 
   saveReport(report: any): Observable<any>{
-    return this.httpClient.post(this.api_url+"/createIncident", report);
+    return this.httpClient.post(this.api_url+"/incident", report);
   }
 
   getIncidents(): Observable<any>{
@@ -26,8 +26,8 @@ export class ServicesService {
     return this.httpClient.get(this.api_url+"/employees");
   }
 
-  getEmployee(employee:any): Observable<any>{
-    return this.httpClient.post<any>(this.api_url+"/getEmployee", employee);
+  getEmployee(email: String): Observable<any>{
+    return this.httpClient.get<any>(this.api_url+"/employee/" + email);
   }
 
   register(user: any){
@@ -45,7 +45,7 @@ export class ServicesService {
   }
 
   updateProfile(profile){
-    return this.httpClient.put<any>(this.api_url+"/updateUser", profile);
+    return this.httpClient.put<any>(this.api_url+"/updateProfile", profile);
   }
 
   getToken(){
