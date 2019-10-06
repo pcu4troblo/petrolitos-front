@@ -6,9 +6,9 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item list-group-item-primary" data-toggle="modal" data-target="#exampleModal">
                         Reportar incidente</li>
-                    <li class="list-group-item list-group-item-primary">Ver incidentes</li>
                     <li class="list-group-item list-group-item-primary" (click)="editProfile()">Editar perfil</li>
                     <li class="list-group-item list-group-item-primary">Lecciones Aprendidas</li>
+                    <li *ngIf="adminUser" class="list-group-item list-group-item-primary" (click)="listaIncidentes()">Ver incidentes</li>
                 </ul>
             </div>
             <div class="col-sm-6">

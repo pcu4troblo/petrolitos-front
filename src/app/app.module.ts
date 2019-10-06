@@ -16,6 +16,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guard/auth.guard';
 import { TokenError } from '@angular/compiler/src/ml_parser/lexer';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ListaIncidentesComponent } from './components/lista-incidentes/lista-incidentes.component';
+import { IncidenteComponent } from './components/incidente/incidente.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     SidenavComponent,
     EditProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListaIncidentesComponent,
+    IncidenteComponent
   ],
   imports: [
     BrowserModule,

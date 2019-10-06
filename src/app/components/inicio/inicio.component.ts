@@ -2,6 +2,7 @@ import { ServicesService } from './../../services/services.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router'
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-inicio',
@@ -13,7 +14,8 @@ export class InicioComponent implements OnInit {
   incidentForm: FormGroup;
   incidents: Array<any> = [];
   logedUser: any = {};
-  
+  adminUser: boolean;
+  //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aXBvIjoiYWRtaW4iLCJpYXQiOjE1NzAzMjE2MjB9._ZLnMdIYixrioXJYq1ttAYMSszrf6hHz_DYO5w-RjGI
   constructor(
     private services: ServicesService,
     private router: Router,
@@ -28,13 +30,18 @@ export class InicioComponent implements OnInit {
       tittle: new FormControl()
     });
 
-    
+    //Validar el tipo de usuario
+    var decoded_token = jwt_decode(this.services.token);
+    if(decoded_token.tipo == 'admin'){
+      this.adminUser = true;
+    }
+
+    //Obtener correo y nombre del usuario logeado
     this.logedUser = JSON.parse(localStorage.getItem('user'));
    
-
-    this.services.getIncidents().subscribe(res => {
+    /*this.services.getIncidents().subscribe(res => {
       this.incidents = res.incident;
-    });
+    });*/
   }
 
   enviarReporte(): void {
@@ -49,5 +56,8 @@ export class InicioComponent implements OnInit {
   }
 
  
+  listaIncidentes(){
+
+  }
 
 }

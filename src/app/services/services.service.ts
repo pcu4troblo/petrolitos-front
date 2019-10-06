@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs';
 export class ServicesService {
 
   api_url = 'https://nameless-tundra-28328.herokuapp.com/api';
+  token : any;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -32,11 +34,17 @@ export class ServicesService {
   }
 
   login(user:any){
-    return this.httpClient.post<any>(this.api_url+"/login", user);
+    return this.httpClient.post<any>(this.api_url+"/login", user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          this.token = res.token;
+        }
+      })
+    );
   }
 
   loggedIn(){
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('user');
   }
 
   updateProfile(profile){
