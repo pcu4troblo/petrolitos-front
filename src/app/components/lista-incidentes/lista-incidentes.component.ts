@@ -30,12 +30,6 @@ export class ListaIncidentesComponent implements OnInit {
         this.incidents = res.incident;
         console.log(this.incidents);
     });
-
-    this.service.getUsers().subscribe(res => {
-      this.empleados = res.employees;
-      console.log(this.empleados);
-  });
-
   }
 
   goToIncident(incidente: any){

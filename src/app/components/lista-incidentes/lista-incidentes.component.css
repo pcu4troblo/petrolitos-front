@@ -9,15 +9,6 @@
     position: relative;
 }
 
-.cart{
-    background: #FE980F;
-    color: #ffffff;
-    font-size: 15px;
-    position: absolute;
-    left: 500px;
-    bottom: 20px;
-}
-
 .row{
     margin-top: 30px;
 }

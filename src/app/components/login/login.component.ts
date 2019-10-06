@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void{
-    
    this.service.login(this.user.value).subscribe( res => {
      this.token = res.token;
      this.logedUser = {

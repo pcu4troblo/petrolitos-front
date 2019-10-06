@@ -15,12 +15,16 @@ export class NavbarComponent implements OnInit {
               private service: ServicesService) { }
 
   ngOnInit() {
-    this.logedUser = this.service.loggedUser;
+    this.logedUser = JSON.parse(localStorage.getItem('user'));
   }
 
   logOut(){
-    this.service.loggedUser = null;
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
+  }
+
+  home(){
+    this.router.navigate([''])
   }
 
 

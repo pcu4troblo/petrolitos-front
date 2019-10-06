@@ -29,12 +29,16 @@ export class ServicesService {
     return this.httpClient.get(this.api_url+"/incident/" + id);
   }
 
-  getUsers(): Observable<any>{
-    return this.httpClient.get(this.api_url+"/employees");
+  getUsers(tipo: string): Observable<any>{
+    return this.httpClient.get(this.api_url+"/employee/" + tipo);
   }
 
   getEmployee(email: String): Observable<any>{
     return this.httpClient.get<any>(this.api_url+"/employee/" + email);
+  }
+
+  assignResponsible(body:any){
+    return this.httpClient.post(this.api_url+"/responsible", body);
   }
 
   register(user: any){
@@ -46,8 +50,8 @@ export class ServicesService {
       (res: any) => {
         if (res) {
           this.token = res.token;
-          this.loggedUser.user = res.user;
-          this.loggedUser.email = res.email;
+          /*this.loggedUser.user = res.user;
+          this.loggedUser.email = res.email;*/
         }
       
       })

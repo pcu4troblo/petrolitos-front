@@ -15,7 +15,8 @@ export class InicioComponent implements OnInit {
   incidents: Array<any> = [];
   logedUser: any = {};
   adminUser: boolean;
-  //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aXBvIjoiYWRtaW4iLCJpYXQiOjE1NzAzMjE2MjB9._ZLnMdIYixrioXJYq1ttAYMSszrf6hHz_DYO5w-RjGI
+  responsibleUser: boolean;
+  selectedFile = null;
 
   constructor(
     private services: ServicesService,
@@ -31,23 +32,33 @@ export class InicioComponent implements OnInit {
       tittle: new FormControl()
     });
 
-
     //Validar el tipo de usuario
     var decoded_token = jwt_decode(this.services.token);
     if(decoded_token.tipo == 'admin'){
       this.adminUser = true;
+    }else if(decoded_token.tipo == 'responsable'){
+      this.responsibleUser = true;
     }
 
     //Obtener correo y nombre del usuario logeado
-    this.logedUser = this.services.loggedUser;
+    this.logedUser = JSON.parse(localStorage.getItem('user'));
    
     this.services.getIncidents().subscribe(res => {
       this.incidents = res.incident;
     });
   }
 
+  onSelected(event){
+    if(event.target.files.length  > 0){
+      this.selectedFile = event.target.files[0];
+      this.incidentForm.get('file').setValue(this.selectedFile);
+    }
+   
+  }
+
   enviarReporte(): void {
     console.log(this.incidentForm.value);
+    
     this.services.saveReport(this.incidentForm.value).subscribe(res => {
       console.log(res);
     });
@@ -57,7 +68,9 @@ export class InicioComponent implements OnInit {
     this.router.navigateByUrl("/profile/" + this.logedUser.email)
   }
 
-
+  registrarResponsable(){
+  this.router.navigate(['/register']);
+}
  
   listaIncidentes(){
     this.router.navigate(['/incidentes']);
