@@ -41,8 +41,7 @@ export class LoginComponent implements OnInit {
      localStorage.setItem('user', JSON.stringify(this.logedUser));
      this.router.navigateByUrl('')
    }, err => {
-     console.log(err.error.message);
-     
+     console.log(err.error);
     if(err.error.message == "Something is wrong"){
       this.errorU = true;
     }

@@ -1,0 +1,31 @@
+.incidentes{
+    min-width: 90%;
+    min-height: 30%;
+    border-top: solid;
+    border-left: solid;
+    border-right: solid;
+    border-color: brown;
+    padding: 10px;
+    position: relative;
+}
+
+.cart{
+    background: #FE980F;
+    color: #ffffff;
+    font-size: 15px;
+    position: absolute;
+    left: 500px;
+    bottom: 20px;
+}
+
+.row{
+    margin-top: 30px;
+}
+
+.negrilla{
+    font-weight: bold;
+}
+
+h1{
+    cursor: pointer;
+}

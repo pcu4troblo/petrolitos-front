@@ -39,11 +39,11 @@ export class InicioComponent implements OnInit {
     }
 
     //Obtener correo y nombre del usuario logeado
-    this.logedUser = JSON.parse(localStorage.getItem('user'));
+    this.logedUser = this.services.loggedUser;
    
-    /*this.services.getIncidents().subscribe(res => {
+    this.services.getIncidents().subscribe(res => {
       this.incidents = res.incident;
-    });*/
+    });
   }
 
   enviarReporte(): void {
@@ -60,7 +60,7 @@ export class InicioComponent implements OnInit {
 
  
   listaIncidentes(){
-
+    this.router.navigate(['/incidentes']);
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,14 +11,15 @@ export class NavbarComponent implements OnInit {
 
   logedUser: any= {};
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private service: ServicesService) { }
 
   ngOnInit() {
-    this.logedUser = JSON.parse(localStorage.getItem('user'));
+    this.logedUser = this.service.loggedUser;
   }
 
   logOut(){
-    localStorage.removeItem('user');
+    this.service.loggedUser = null;
     this.router.navigate(['/login']);
   }
 

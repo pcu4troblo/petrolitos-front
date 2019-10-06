@@ -9,7 +9,6 @@ import { ServicesService } from './services/services.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { NavbarComponent } from './tools/navbar/navbar.component';
-import { SidenavComponent } from './tools/sidenav/sidenav.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -24,7 +23,6 @@ import { IncidenteComponent } from './components/incidente/incidente.component';
     AppComponent,
     InicioComponent,
     NavbarComponent,
-    SidenavComponent,
     EditProfileComponent,
     LoginComponent,
     RegisterComponent,

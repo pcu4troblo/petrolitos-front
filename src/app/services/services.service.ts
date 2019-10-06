@@ -13,6 +13,7 @@ export class ServicesService {
 
   api_url = 'https://nameless-tundra-28328.herokuapp.com/api';
   token : any;
+  loggedUser: any = {};
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,6 +23,10 @@ export class ServicesService {
 
   getIncidents(): Observable<any>{
     return this.httpClient.get(this.api_url+"/incidents");
+  }
+
+  getIncident(id: any): Observable<any>{
+    return this.httpClient.get(this.api_url+"/incident/" + id);
   }
 
   getUsers(): Observable<any>{
@@ -41,7 +46,10 @@ export class ServicesService {
       (res: any) => {
         if (res) {
           this.token = res.token;
+          this.loggedUser.user = res.user;
+          this.loggedUser.email = res.email;
         }
+      
       })
     );
   }
@@ -56,9 +64,7 @@ export class ServicesService {
     return this.httpClient.put<any>(this.api_url+"/updateProfile", profile);
   }
 
-  getToken(){
-    return localStorage.getItem('token');
-  }
+  
 
 
 }
