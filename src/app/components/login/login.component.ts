@@ -13,6 +13,10 @@ export class LoginComponent implements OnInit {
   user: FormGroup;
   token: any;
   logedUser: any = {};
+  errorP: boolean = false;
+  errorU: boolean = false;
+  error: any;
+
 
   constructor(
     private service: ServicesService,
@@ -27,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void{
+    
    this.service.login(this.user.value).subscribe( res => {
      this.token = res.token;
      this.logedUser = {
@@ -35,6 +40,15 @@ export class LoginComponent implements OnInit {
      };
      localStorage.setItem('user', JSON.stringify(this.logedUser));
      this.router.navigateByUrl('')
+   }, err => {
+     console.log(err.error.message);
+     
+    if(err.error.message == "Something is wrong"){
+      this.errorU = true;
+    }
+      if(err.error.message == "Wrong password"){
+        this.errorP = true;
+      }
    })
   }
 

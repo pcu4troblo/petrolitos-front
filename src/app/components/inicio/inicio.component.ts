@@ -16,10 +16,11 @@ export class InicioComponent implements OnInit {
   logedUser: any = {};
   adminUser: boolean;
   //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aXBvIjoiYWRtaW4iLCJpYXQiOjE1NzAzMjE2MjB9._ZLnMdIYixrioXJYq1ttAYMSszrf6hHz_DYO5w-RjGI
+
   constructor(
     private services: ServicesService,
     private router: Router,
-    ) { }
+  ) { }
 
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class InicioComponent implements OnInit {
       file: new FormControl(),
       tittle: new FormControl()
     });
+
 
     //Validar el tipo de usuario
     var decoded_token = jwt_decode(this.services.token);
@@ -51,13 +53,15 @@ export class InicioComponent implements OnInit {
     });
   }
 
-  editProfile(){
+  editProfile() {
     this.router.navigateByUrl("/profile/" + this.logedUser.email)
   }
+
 
  
   listaIncidentes(){
 
   }
+
 
 }

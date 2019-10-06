@@ -4,9 +4,16 @@
     box-shadow: 0px 0px 10px 0px #000;
     position: absolute;
     top: 15vh;
+    background-color:white;
     width: 70%;
 }
 
 .input-group-text{
     color: black;
+}
+
+.background{
+    background-color: darkslategray;
+    height: 100%;
+    width: 100%;
 }

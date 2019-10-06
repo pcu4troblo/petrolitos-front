@@ -13,6 +13,7 @@ export class EditProfileComponent implements OnInit {
   
   profile: FormGroup;
   newProfile: any = {};
+  user: any ;
   
 
   constructor(
@@ -28,6 +29,13 @@ export class EditProfileComponent implements OnInit {
       phone: new FormControl(),
       social: new FormControl()
     });
+
+    this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = {
+      email: this.user.email
+    }
+    console.log(this.user);
+    
   }
 
   onSubmit(){
