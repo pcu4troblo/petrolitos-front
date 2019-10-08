@@ -4,9 +4,21 @@
     font-size: 15px;
     position: absolute;
     left: 500px;
-    bottom: 20px;
+}
+
+.comments{
+    background: #FE980F;
+    color: #ffffff;
+    font-size: 15px;
+    position: absolute;
+    cursor: pointer;
 }
 
 .row{
     margin-top: 70px;
+}
+
+.modal-header{
+    background-color: brown;
+    color: white;
 }

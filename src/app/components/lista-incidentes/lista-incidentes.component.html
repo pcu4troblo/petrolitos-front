@@ -1,11 +1,16 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <div class="row">
+    <div *ngIf="adminUser || responsableUser" class="row">
         <div class="col-sm-9">
             <div *ngFor="let incidente of incidents" class="incidentes">
                 <h1 (click)="goToIncident(incidente)">{{incidente.tittle}}</h1>
                 <p><span class="negrilla">Descripcion:</span> {{incidente.content}}</p>
             </div>
+        </div>
+    </div>
+    <div *ngIf="normalUser" class="row">
+        <div class="col-sm-12">
+            <h2>Lo sentimos, usted no tiene los permisos para navegar aqui!</h2>
         </div>
     </div>
 </div>

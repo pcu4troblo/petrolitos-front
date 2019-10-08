@@ -1,44 +1,101 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <div class="row">
+    <div *ngIf="adminUser || responsableUser" class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-                <h1>{{incident.tittle}}</h1>
-                <p>Descripcion: {{incident.content}}</p>
-                <p>Nivel de impacto: {{incident.category}}</p>
-                <button class="btn btn-default cart" data-toggle="modal" data-target="#exampleModal">Asignar Responsable</button>
+            <h1>{{incident.tittle}}</h1>
+            <p>Descripcion: {{incident.content}}</p>
+            <p>Nivel de impacto: {{incident.category}}</p>
+            <button *ngIf="adminUser" class="btn btn-default cart" data-toggle="modal"
+                data-target="#exampleModal">Asignar Responsable</button>
+            <button *ngIf="responsableUser" class="btn btn-default cart" data-toggle="modal"
+                data-target="#exampleModal2">Añadir avances</button>
+        </div>
+    </div>
+    <div *ngIf="responsableUser" class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-9">
+            <form [formGroup]="comments">
+                <div class="form-group">
+                    <textarea formControlName="comments" class="form-control" placeholder="Comentarios"
+                        rows="3"></textarea>
+                </div>
+                <div class="form-footer">
+                    <a class="btn btn-default comments" (click)="guardarComentario()">Enviar Comentarios</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="normalUser" class="row">
+        <div class="col-sm-12">
+            <h2>Lo sentimos, usted no tiene los permisos para navegar aqui!</h2>
         </div>
     </div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Asignar Responsable</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form [formGroup]="asignaResponsable">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Responsables:</label>
-                            </div>
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option *ngFor="let empleado of empleados" (click)="escogerResponsable(empleado)" value="{{empleado._id}}">{{empleado.name}}</option>
-                            </select>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Asignar Responsable</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="asignaResponsable">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Responsables:</label>
                         </div>
-                        <div class="form-footer">
-                            <button type="submit" data-dismiss="modal" (click)="asignarResponsable()"
-                                class="btn btn-primary">Asignar</button>
-                        </div>
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option *ngFor="let empleado of empleados" (click)="escogerResponsable(empleado)"
+                                value="{{empleado._id}}">{{empleado.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" data-dismiss="modal" (click)="asignarResponsable()"
+                            class="btn btn-primary">Asignar</button>
+                    </div>
 
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir Avances</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="asignaResponsable">
+                    <div class="form-group">
+                        <label class="title" for="exampleInputEmail1">Descripcion:</label>
+                        <input type="text" class="form-control" id="exampleInputText" aria-describedby="emailHelp"
+                            placeholder="Breve descripcion">
+
+                    </div>
+                    <div class="form-group">
+                        <input type="file" placeholder="Documents">
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="submit" data-dismiss="modal" (click)="asignarResponsable()"
+                            class="btn btn-primary">Asignar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

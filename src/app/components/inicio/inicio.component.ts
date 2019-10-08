@@ -34,31 +34,33 @@ export class InicioComponent implements OnInit {
 
     //Validar el tipo de usuario
     var decoded_token = jwt_decode(this.services.token);
-    if(decoded_token.tipo == 'admin'){
-      this.adminUser = true;
-    }else if(decoded_token.tipo == 'responsable'){
-      this.responsibleUser = true;
-    }
+    if (decoded_token.tipo == 'admin' || decoded_token.tipo == 'responsable') {
+      if (decoded_token.tipo == 'admin') {
+        this.adminUser = true;
+      } else if (decoded_token.tipo == 'responsable') {
+        this.responsibleUser = true;
+      }
+    };
 
     //Obtener correo y nombre del usuario logeado
     this.logedUser = JSON.parse(localStorage.getItem('user'));
-   
+
     this.services.getIncidents().subscribe(res => {
       this.incidents = res.incident;
     });
   }
 
-  onSelected(event){
-    if(event.target.files.length  > 0){
+  onSelected(event) {
+    if (event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
       this.incidentForm.get('file').setValue(this.selectedFile);
     }
-   
+
   }
 
   enviarReporte(): void {
     console.log(this.incidentForm.value);
-    
+
     this.services.saveReport(this.incidentForm.value).subscribe(res => {
       console.log(res);
     });
@@ -68,11 +70,11 @@ export class InicioComponent implements OnInit {
     this.router.navigateByUrl("/profile/" + this.logedUser.email)
   }
 
-  registrarResponsable(){
-  this.router.navigate(['/register']);
-}
- 
-  listaIncidentes(){
+  registrarResponsable() {
+    this.router.navigate(['/register']);
+  }
+
+  listaIncidentes() {
     this.router.navigate(['/incidentes']);
   }
 

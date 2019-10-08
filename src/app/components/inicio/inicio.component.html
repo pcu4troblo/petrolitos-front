@@ -8,7 +8,7 @@
                         Reportar incidente</li>
                     <li class="list-group-item list-group-item-primary" (click)="editProfile()">Editar perfil</li>
                     <li *ngIf="responsibleUser" class="list-group-item list-group-item-primary">Lecciones Aprendidas</li>
-                    <li *ngIf="adminUser" class="list-group-item list-group-item-primary" (click)="listaIncidentes()">Ver incidentes</li>
+                    <li *ngIf="adminUser || responsibleUser" class="list-group-item list-group-item-primary" (click)="listaIncidentes()">Ver incidentes</li>
                     <li *ngIf="adminUser" class="list-group-item list-group-item-primary" (click)="registrarResponsable()">Registrar Responsable</li>
                 </ul>
             </div>
