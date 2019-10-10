@@ -7,7 +7,7 @@
                     <li class="list-group-item list-group-item-primary" data-toggle="modal" data-target="#exampleModal">
                         Reportar incidente</li>
                     <li class="list-group-item list-group-item-primary" (click)="editProfile()">Editar perfil</li>
-                    <li *ngIf="responsibleUser" class="list-group-item list-group-item-primary">Lecciones Aprendidas</li>
+                    <li class="list-group-item list-group-item-primary" data-toggle="modal" data-target="#exampleModal2">Lecciones Aprendidas</li>
                     <li *ngIf="adminUser || responsibleUser" class="list-group-item list-group-item-primary" (click)="listaIncidentes()">Ver incidentes</li>
                     <li *ngIf="adminUser" class="list-group-item list-group-item-primary" (click)="registrarResponsable()">Registrar Responsable</li>
                 </ul>
@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 
 
@@ -92,4 +92,40 @@
             </div>
         </div>
     </div>
+
+<!-- Modal 2-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Leccion Aprendida</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="leccionForm">
+                <div class="form-group">
+                    <label class="title" for="exampleInputEmail1">Descripción:</label>
+                    <textarea formControlName="description" class="form-control"
+                        placeholder="Describa su incidente aquí" id="exampleFormControlTextarea1"
+                        rows="3"></textarea>
+
+                </div>
+                <div class="form-group">
+                    <label class="title" for="exampleFormControlFile1">Archivos:</label>
+                    <input type="file" (change)="onSelected1($event)" class="form-control-file"
+                        id="exampleFormControlFile1">
+                    <small id="emailHelp" class="form-text text-muted">Suba un archivo</small>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" data-dismiss="modal" (click)="enviarLeccion()"
+                        class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>
+

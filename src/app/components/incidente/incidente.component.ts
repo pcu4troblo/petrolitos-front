@@ -78,4 +78,8 @@ export class IncidenteComponent implements OnInit {
     })
   }
 
+  guardarComentario(){
+    
+  }
+
 }

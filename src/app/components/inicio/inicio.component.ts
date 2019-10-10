@@ -12,6 +12,7 @@ import * as jwt_decode from 'jwt-decode';
 export class InicioComponent implements OnInit {
 
   incidentForm: FormGroup;
+  leccionForm: FormGroup;
   incidents: Array<any> = [];
   logedUser: any = {};
   adminUser: boolean;
@@ -25,11 +26,17 @@ export class InicioComponent implements OnInit {
 
 
   ngOnInit() {
+    //Inicializar forms
     this.incidentForm = new FormGroup({
       content: new FormControl(),
       category: new FormControl(),
       file: new FormControl(),
       tittle: new FormControl()
+    });
+
+    this.leccionForm = new FormGroup({
+      description: new FormControl(),
+      file: new FormControl(),
     });
 
     //Validar el tipo de usuario
@@ -55,13 +62,25 @@ export class InicioComponent implements OnInit {
       this.selectedFile = event.target.files[0];
       this.incidentForm.get('file').setValue(this.selectedFile);
     }
+  }
 
+  onSelected1(event) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+      this.leccionForm.get('file').setValue(this.selectedFile);
+    }
   }
 
   enviarReporte(): void {
-    console.log(this.incidentForm.value);
-
     this.services.saveReport(this.incidentForm.value).subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  enviarLeccion(): void {
+    console.log(this.leccionForm.value);
+    
+    this.services.saveLesson(this.leccionForm.value).subscribe(res => {
       console.log(res);
     });
   }

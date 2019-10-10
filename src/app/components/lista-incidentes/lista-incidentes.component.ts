@@ -11,8 +11,8 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class ListaIncidentesComponent implements OnInit {
 
-  incidents : Array<any> = [];
-  empleados : Array<any> = [];
+  incidents: Array<any> = [];
+  empleados: Array<any> = [];
   responsable: FormGroup;
   responsableUser: boolean;
   adminUser: boolean;
@@ -31,19 +31,26 @@ export class ListaIncidentesComponent implements OnInit {
     });
 
     //lista de incidentes
-    this.service.getIncidents().subscribe(res => {
-        this.incidents = res.incident;
-        console.log(this.incidents);
-    });
+    
 
-      //validar tipo de usuario
+
+
+    //validar tipo de usuario
     var decoded_token = jwt_decode(this.service.token);
     if (decoded_token.tipo == 'admin' || decoded_token.tipo == 'responsable') {
       if (decoded_token.tipo == 'admin') {
         this.adminUser = true;
+        this.service.getIncidents().subscribe(res => {
+          this.incidents = res.incident;
+          console.log(this.incidents);
+        });
       } else if (decoded_token.tipo == 'responsable') {
         this.responsableUser = true;
-      }else{
+        this.service.responsibleIncidents(this.service.id).subscribe(res => {
+          this.incidents = res.incident;
+          console.log(res);
+        });
+      } else {
         this.normalUser = true;
       }
     };
@@ -51,7 +58,7 @@ export class ListaIncidentesComponent implements OnInit {
   }
 
   //ir a incidente seleccionado
-  goToIncident(incidente: any){
+  goToIncident(incidente: any) {
     this.router.navigateByUrl("/incidentes/" + incidente._id);
   }
 
