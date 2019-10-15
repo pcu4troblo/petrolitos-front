@@ -54,21 +54,19 @@ export class InicioComponent implements OnInit {
     })
   }
 
-  /*
   onIncidentSelected (event) {
     if (event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0]
+      this.selectedFile = event.target.files[0].name
       this.incidentForm.get('file').setValue(this.selectedFile)
     }
   }
 
   onLessonFileSelected (event) {
     if (event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0]
+      this.selectedFile = event.target.files[0].name
       this.leccionForm.get('file').setValue(this.selectedFile)
     }
   }
-  */
 
   enviarReporte (): void {
     this.services.saveReport(this.incidentForm.value).subscribe((res) => {
