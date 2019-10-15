@@ -16,7 +16,13 @@ export class ServicesService {
   constructor (private httpClient: HttpClient) {}
 
   saveReport (report: any): Observable<any> {
-    return this.httpClient.post(this.api_url + '/incident', report)
+    const formData = new FormData();
+    console.log(report);
+    formData.append('content', report.content);
+    formData.append('category', report.category);
+    formData.append('file', report.file);
+    formData.append('tittle', report.tittle);
+    return this.httpClient.post(this.api_url + '/incident', formData);
   }
 
   saveLesson (lesson: any): Observable<any> {

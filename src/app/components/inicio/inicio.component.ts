@@ -56,19 +56,20 @@ export class InicioComponent implements OnInit {
 
   onIncidentSelected (event) {
     if (event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0].name
+      this.selectedFile = event.target.files[0]
       this.incidentForm.get('file').setValue(this.selectedFile)
     }
   }
 
   onLessonFileSelected (event) {
     if (event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0].name
+      this.selectedFile = event.target.files[0]
       this.leccionForm.get('file').setValue(this.selectedFile)
     }
   }
 
   enviarReporte (): void {
+    console.log(this.incidentForm.value)
     this.services.saveReport(this.incidentForm.value).subscribe((res) => {
       console.log(res)
     })
