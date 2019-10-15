@@ -26,7 +26,11 @@ export class ServicesService {
   }
 
   saveLesson (lesson: any): Observable<any> {
-    return this.httpClient.post(this.api_url + '/lesson', lesson)
+    const formData = new FormData();
+    console.log(lesson);
+    formData.append('content', lesson.description);
+    formData.append('file', lesson.file);
+    return this.httpClient.post(this.api_url + '/lesson', formData)
   }
 
   getIncidents (): Observable<any> {
